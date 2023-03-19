@@ -59,9 +59,9 @@ if [ $? -ne 0 ]; then exit 1; fi
 if [ ! -d "$AR_COMPS/esp32-camera" ]; then
 	git clone $CAMERA_REPO_URL "$AR_COMPS/esp32-camera"
 else
-	git -C "$AR_COMPS/esp32-camera" fetch && \
-	git -C "$AR_COMPS/esp32-camera" pull --ff-only
+	git -C "$AR_COMPS/esp32-camera" fetch
 fi
+git -C "$AR_COMPS/esp32-camera" checkout 5c8349f4cf169c8a61283e0da9b8cff10994d3f3
 #this is a temp measure to fix build issue in recent IDF master
 if [ -f "$AR_COMPS/esp32-camera/idf_component.yml" ]; then
 	rm -rf "$AR_COMPS/esp32-camera/idf_component.yml"
@@ -75,9 +75,9 @@ if [ $? -ne 0 ]; then exit 1; fi
 if [ ! -d "$AR_COMPS/esp-dl" ]; then
 	git clone $DL_REPO_URL "$AR_COMPS/esp-dl"
 else
-	git -C "$AR_COMPS/esp-dl" fetch && \
-	git -C "$AR_COMPS/esp-dl" pull --ff-only
+	git -C "$AR_COMPS/esp-dl" fetch
 fi
+git -C "$AR_COMPS/esp-dl" checkout f3006d77ef95ed21cc265493eb71335cd0ba38a8
 if [ $? -ne 0 ]; then exit 1; fi
 
 #
@@ -87,9 +87,9 @@ if [ $? -ne 0 ]; then exit 1; fi
 if [ ! -d "$AR_COMPS/esp-sr" ]; then
 	git clone $SR_REPO_URL "$AR_COMPS/esp-sr"
 else
-	git -C "$AR_COMPS/esp-sr" fetch && \
-	git -C "$AR_COMPS/esp-sr" pull --ff-only
+	git -C "$AR_COMPS/esp-sr" fetch
 fi
+git -C "$AR_COMPS/esp-sr" checkout 6b7319071e14355d7df30f769e9859c2824a5162
 if [ $? -ne 0 ]; then exit 1; fi
 
 #
@@ -97,13 +97,12 @@ if [ $? -ne 0 ]; then exit 1; fi
 #
 
 if [ ! -d "$AR_COMPS/esp_littlefs" ]; then
-	git clone $LITTLEFS_REPO_URL "$AR_COMPS/esp_littlefs" && \
-    git -C "$AR_COMPS/esp_littlefs" submodule update --init --recursive
+	git clone $LITTLEFS_REPO_URL "$AR_COMPS/esp_littlefs"
 else
-	git -C "$AR_COMPS/esp_littlefs" fetch && \
-	git -C "$AR_COMPS/esp_littlefs" pull --ff-only && \
-    git -C "$AR_COMPS/esp_littlefs" submodule update --init --recursive
+	git -C "$AR_COMPS/esp_littlefs" fetch
 fi
+git -C "$AR_COMPS/esp_littlefs" checkout 485a037be66daedabfbb313315e5a7439123d014
+git -C "$AR_COMPS/esp_littlefs" submodule update --init --recursive
 if [ $? -ne 0 ]; then exit 1; fi
 
 #
@@ -111,14 +110,13 @@ if [ $? -ne 0 ]; then exit 1; fi
 #
 
 if [ ! -d "$AR_COMPS/esp-rainmaker" ]; then
-    git clone $RMAKER_REPO_URL "$AR_COMPS/esp-rainmaker" && \
-    git -C "$AR_COMPS/esp-rainmaker" submodule update --init --recursive
+    git clone $RMAKER_REPO_URL "$AR_COMPS/esp-rainmaker"
     # git -C "$AR_COMPS/esp-rainmaker" checkout f1b82c71c4536ab816d17df016d8afe106bd60e3
 else
-	git -C "$AR_COMPS/esp-rainmaker" fetch && \
-	git -C "$AR_COMPS/esp-rainmaker" pull --ff-only && \
-    git -C "$AR_COMPS/esp-rainmaker" submodule update --init --recursive
+	git -C "$AR_COMPS/esp-rainmaker" fetch
 fi
+git -C "$AR_COMPS/esp-rainmaker" checkout 9b33df844b6e4223c69973246264a10641ab95b5
+git -C "$AR_COMPS/esp-rainmaker" submodule update --init --recursive
 if [ $? -ne 0 ]; then exit 1; fi
 
 #
@@ -132,9 +130,9 @@ if [ ! -d "$AR_COMPS/esp-dsp" ]; then
 	# echo "$cml" >> "$AR_COMPS/esp-dsp/CMakeLists.txt"
 	# echo "endif()" >> "$AR_COMPS/esp-dsp/CMakeLists.txt"
 else
-	git -C "$AR_COMPS/esp-dsp" fetch && \
-	git -C "$AR_COMPS/esp-dsp" pull --ff-only
+	git -C "$AR_COMPS/esp-dsp" fetch
 fi
+git -C "$AR_COMPS/esp-dsp" checkout 401faf8bcf76bb5c958c83f39cb85627fdacc156
 if [ $? -ne 0 ]; then exit 1; fi
 
 #
@@ -144,8 +142,8 @@ if [ $? -ne 0 ]; then exit 1; fi
 if [ ! -d "$AR_COMPS/arduino_tinyusb/tinyusb" ]; then
 	git clone $TINYUSB_REPO_URL "$AR_COMPS/arduino_tinyusb/tinyusb"
 else
-	git -C "$AR_COMPS/arduino_tinyusb/tinyusb" fetch && \
-	git -C "$AR_COMPS/arduino_tinyusb/tinyusb" pull --ff-only
+	git -C "$AR_COMPS/arduino_tinyusb/tinyusb" fetch
 fi
+git -C "$AR_COMPS/arduino_tinyusb/tinyusb" checkout 73f22e31c7a31e9b974e27407b906bbc8cb05a7a
 if [ $? -ne 0 ]; then exit 1; fi
 
